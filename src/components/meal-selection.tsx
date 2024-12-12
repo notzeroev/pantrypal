@@ -40,11 +40,11 @@ export function MealSelection({ onChange }: MealSelectionProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
+    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4">
       {DAYS.map(day => (
         <div key={day} className="space-y-2">
           <Label className="font-bold">{day}</Label>
-          <div className="flex space-x-2">
+          <div className="flex space-x-2 ">
             {MEALS.map(meal => (
               <Checkbox
                 key={`${day}-${meal}`}

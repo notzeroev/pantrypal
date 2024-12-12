@@ -140,10 +140,7 @@ export function GroceryForm() {
         </div>
       )}
 
-      <button 
-        type="submit" 
-        className="w-full bg-primary text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
-      >
+      <button type="submit" className="w-full bg-black text-white py-2 px-4 rounded hover:bg-primary transition-colors ease-in-out duration-300">
         Submit
       </button>
     </form>
