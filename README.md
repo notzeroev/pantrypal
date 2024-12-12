@@ -4,7 +4,7 @@ An AI-powered grocery assistant for students.
 
 Built with Next.js (15) and Tailwind
 
-Was also my first time using these frameworks :sweat-smile:
+Was also my first time using these frameworks :)
 
 ## Features
 - **Smart Shopping Lists**: Automatically generates a grocery lists based on your requirements.
