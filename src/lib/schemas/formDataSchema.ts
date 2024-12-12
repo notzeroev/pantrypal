@@ -21,8 +21,3 @@ const MealDaySchema = z.object({
   
   // Type inference
   export type FormData = z.infer<typeof FormDataSchema>;
-  
-  // Safe parsing function
-  export function parseFormData(data: unknown): InputData {
-    return FormDataSchema.parse(data);
-  }
