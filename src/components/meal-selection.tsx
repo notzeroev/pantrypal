@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 
@@ -11,8 +12,21 @@ const MEALS = ['Breakfast', 'Lunch', 'Dinner']
 
 export function MealSelection({ onChange }: MealSelectionProps) {
   const [selectedMeals, setSelectedMeals] = useState<Record<string, string[]>>(
-    DAYS.reduce((acc, day) => ({ ...acc, [day.toLowerCase()]: ['lunch'] }), {})
-  )
+    DAYS.reduce<Record<string, string[]>>((acc, day) => {
+      if (['Saturday', 'Sunday'].includes(day)) {
+        acc[day.toLowerCase()] = [];
+      } else if (day === 'Friday') {
+        acc[day.toLowerCase()] = ['breakfast', 'lunch'];
+      } else {
+        acc[day.toLowerCase()] = ['breakfast', 'lunch', 'dinner']; // All meals for weekdays
+      }
+      return acc;
+    }, {})
+  );
+
+  useEffect(() => {
+    onChange(selectedMeals); // Emit the initial default values on mount
+  }, [onChange, selectedMeals]);
 
   const handleMealChange = (day: string, meal: string, isChecked: boolean) => {
     const updatedMeals = { ...selectedMeals }
