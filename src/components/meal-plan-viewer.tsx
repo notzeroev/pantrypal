@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { MealPlan } from "@/lib/schemas/mealPlanSchema"
+import { Ingredient, Meal } from "@/lib/types/mealPlanTypes";
 
 interface MealPlanViewerProps {
   data: MealPlan
@@ -15,8 +16,6 @@ export function MealPlanViewer({ data }: MealPlanViewerProps) {
     </div>
   )
 }
-
-
 
 function GroceryList({ items }: { items: NonNullable<MealPlan["Grocery List"]["items"]> }) {
   const totalPrice = items.reduce((sum, item) => sum + (item?.price || 0), 0);
@@ -73,7 +72,10 @@ function WeeklyMealPlan({ mealPlan }: { mealPlan: MealPlan["Meal Plan"] }) {
   )
 }
 
-function DayMeals({ day, meals }: { day: string; meals: NonNullable<MealPlan["Meal Plan"][keyof MealPlan["Meal Plan"]]> | null }) {
+function DayMeals({ day, meals }: { 
+  day: string; 
+  meals: MealPlan["Meal Plan"][keyof MealPlan["Meal Plan"]] 
+}) {
   if (!meals) return null
 
   return (
@@ -88,7 +90,10 @@ function DayMeals({ day, meals }: { day: string; meals: NonNullable<MealPlan["Me
   )
 }
 
-function MealCard({ mealType, meal }: { mealType: string; meal: NonNullable<MealPlan["Meal Plan"][keyof MealPlan["Meal Plan"]][keyof MealPlan["Meal Plan"][keyof MealPlan["Meal Plan"]]]> | null }) {
+function MealCard({ mealType, meal }: {
+  mealType: string;
+  meal: Meal | null | undefined
+}) {
   if (!meal) return null
 
   return (
@@ -104,7 +109,7 @@ function MealCard({ mealType, meal }: { mealType: string; meal: NonNullable<Meal
           <ul className="text-sm list-disc list-inside">
             {meal.ingredients?.map((ingredient, index) => (
               <li key={index}>
-                {ingredient?.name || 'N/A'} - {ingredient?.quantity || 'N/A'}
+                {ingredient.name || 'N/A'} - {ingredient.quantity || 'N/A'}
               </li>
             ))}
           </ul>
