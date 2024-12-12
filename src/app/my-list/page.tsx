@@ -57,9 +57,7 @@ export default function ResponsePage() {
   // Results state
   return (
     <div>
-        <main className="min-h-screen py-12">
-            <MealPlanViewer data={results} />
-        </main>
+      <MealPlanViewer data={results} />
     </div>
   )
 }

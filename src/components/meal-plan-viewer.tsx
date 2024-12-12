@@ -24,23 +24,23 @@ function GroceryList({ items }: { items: NonNullable<MealPlan["Grocery List"]["i
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Grocery List - ${totalPrice}</CardTitle>
+        <CardTitle><span className="text-primary">Grocery List</span> - ${totalPrice}</CardTitle>
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-[600px]">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Item</TableHead>
-                <TableHead>Quantity</TableHead>
-                <TableHead>Lifespan</TableHead>
-                <TableHead>Price</TableHead>
+              <TableRow className="hover:bg-unset">
+                <TableHead className="text-primary font-bold">Item</TableHead>
+                <TableHead className="text-primary font-semibold">Quantity</TableHead>
+                <TableHead className="text-primary font-bold">Lifespan</TableHead>
+                <TableHead className="text-primary font-bold">Price</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {items.map((item, index) => (
-                <TableRow key={index}>
-                  <TableCell>{item?.name || 'N/A'}</TableCell>
+                <TableRow className="hover:bg-primary transition-all duration-800 ease-in-out" key={index}>
+                  <TableCell className="font-semibold">{item?.name || 'N/A'}</TableCell>
                   <TableCell>{item?.quantity || 0}</TableCell>
                   <TableCell>{item?.lifespan || 'N/A'}</TableCell>
                   <TableCell>${item?.price || '0.00'}</TableCell>
@@ -58,9 +58,9 @@ function WeeklyMealPlan({ mealPlan }: { mealPlan: MealPlan["Meal Plan"] }) {
   const days = Object.keys(mealPlan)
 
   return (
-    <Card>
+    <Card className="bg-transparent shadow-none border-none">
       <CardHeader>
-        <CardTitle>Weekly Meal Plan</CardTitle>
+        <CardTitle className="text-primary">Weekly Meal Plan</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
@@ -92,7 +92,7 @@ function MealCard({ mealType, meal }: { mealType: string; meal: NonNullable<Meal
   if (!meal) return null
 
   return (
-    <Card>
+    <Card className="border-primary hover:bg-primary transition-all duration-300 ease-in-out">
       <CardHeader>
         <CardTitle className="text-base">{mealType}</CardTitle>
       </CardHeader>
