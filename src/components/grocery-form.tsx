@@ -26,7 +26,13 @@ export function GroceryForm() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     
-    // Set loading state BEFORE any async operations
+    // Add validation check for kitchenware
+    if (kitchenware.length === 0) {
+      setError("Please select at least one kitchenware item")
+      return
+    }
+
+    // Set loading state AFTER validation passes
     setIsLoading(true)
     setError(null)
   
@@ -101,7 +107,7 @@ export function GroceryForm() {
         <Label htmlFor="calories">Select your calorie goal</Label>
         <Slider
           id="calories"
-          min={1000}
+          min={1500}
           max={4000}
           step={100}
           value={[calories]}
