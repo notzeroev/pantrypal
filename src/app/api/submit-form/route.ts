@@ -31,7 +31,7 @@ export async function POST(request: Request) {
         try {
             // Attempt to generate object
             const { object } = await generateObject({
-                model: groq('mixtral-8x7b-32768'),
+                model: groq('llama-3.3-70b-versatile'),
                 system: systemPrompt,
                 prompt: groceryListPrompt(data),
                 schema: MealPlanSchema

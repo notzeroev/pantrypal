@@ -23,7 +23,7 @@ function GroceryList({ items }: { items: NonNullable<MealPlan["Grocery List"]["i
   return (
     <Card>
       <CardHeader>
-        <CardTitle><span className="text-primary">Grocery List</span> - ${totalPrice}</CardTitle>
+        <CardTitle><span className="text-primary">Grocery List</span> ~ ${totalPrice.toFixed(2)}</CardTitle>
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-[600px]">
